@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.first.dao.CompanyMapper">
+  <resultMap id="BaseResultMap" type="com.first.bean.Company">
+    <id column="companyid" jdbcType="INTEGER" property="companyid" />
+    <result column="comploginid" jdbcType="INTEGER" property="comploginid" />
+    <result column="adminid" jdbcType="INTEGER" property="adminid" />
+    <result column="tel" jdbcType="VARCHAR" property="tel" />
+    <result column="registerdate" jdbcType="DATE" property="registerdate" />
+    <result column="compname" jdbcType="VARCHAR" property="compname" />
+    <result column="founddate" jdbcType="DATE" property="founddate" />
+    <result column="compproperty" jdbcType="VARCHAR" property="compproperty" />
+    <result column="mainpost" jdbcType="VARCHAR" property="mainpost" />
+    <result column="mainwork" jdbcType="VARCHAR" property="mainwork" />
+    <result column="clicknum" jdbcType="INTEGER" property="clicknum" />
+    <result column="station" jdbcType="BIT" property="station" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    companyid, comploginid, adminid, tel, registerdate, compname, founddate, compproperty, 
+    mainpost, mainwork, clicknum, station
+  </sql>
+  <select id="selectByExample" parameterType="com.first.bean.CompanyExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from company
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from company
+    where companyid = #{companyid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from company
+    where companyid = #{companyid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.first.bean.CompanyExample">
+    delete from company
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.first.bean.Company">
+    insert into company (companyid, comploginid, adminid, 
+      tel, registerdate, compname, 
+      founddate, compproperty, mainpost, 
+      mainwork, clicknum, station
+      )
+    values (#{companyid,jdbcType=INTEGER}, #{comploginid,jdbcType=INTEGER}, #{adminid,jdbcType=INTEGER}, 
+      #{tel,jdbcType=VARCHAR}, #{registerdate,jdbcType=DATE}, #{compname,jdbcType=VARCHAR}, 
+      #{founddate,jdbcType=DATE}, #{compproperty,jdbcType=VARCHAR}, #{mainpost,jdbcType=VARCHAR}, 
+      #{mainwork,jdbcType=VARCHAR}, #{clicknum,jdbcType=INTEGER}, #{station,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.first.bean.Company">
+    insert into company
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyid != null">
+        companyid,
+      </if>
+      <if test="comploginid != null">
+        comploginid,
+      </if>
+      <if test="adminid != null">
+        adminid,
+      </if>
+      <if test="tel != null">
+        tel,
+      </if>
+      <if test="registerdate != null">
+        registerdate,
+      </if>
+      <if test="compname != null">
+        compname,
+      </if>
+      <if test="founddate != null">
+        founddate,
+      </if>
+      <if test="compproperty != null">
+        compproperty,
+      </if>
+      <if test="mainpost != null">
+        mainpost,
+      </if>
+      <if test="mainwork != null">
+        mainwork,
+      </if>
+      <if test="clicknum != null">
+        clicknum,
+      </if>
+      <if test="station != null">
+        station,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyid != null">
+        #{companyid,jdbcType=INTEGER},
+      </if>
+      <if test="comploginid != null">
+        #{comploginid,jdbcType=INTEGER},
+      </if>
+      <if test="adminid != null">
+        #{adminid,jdbcType=INTEGER},
+      </if>
+      <if test="tel != null">
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="registerdate != null">
+        #{registerdate,jdbcType=DATE},
+      </if>
+      <if test="compname != null">
+        #{compname,jdbcType=VARCHAR},
+      </if>
+      <if test="founddate != null">
+        #{founddate,jdbcType=DATE},
+      </if>
+      <if test="compproperty != null">
+        #{compproperty,jdbcType=VARCHAR},
+      </if>
+      <if test="mainpost != null">
+        #{mainpost,jdbcType=VARCHAR},
+      </if>
+      <if test="mainwork != null">
+        #{mainwork,jdbcType=VARCHAR},
+      </if>
+      <if test="clicknum != null">
+        #{clicknum,jdbcType=INTEGER},
+      </if>
+      <if test="station != null">
+        #{station,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.first.bean.CompanyExample" resultType="java.lang.Long">
+    select count(*) from company
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update company
+    <set>
+      <if test="record.companyid != null">
+        companyid = #{record.companyid,jdbcType=INTEGER},
+      </if>
+      <if test="record.comploginid != null">
+        comploginid = #{record.comploginid,jdbcType=INTEGER},
+      </if>
+      <if test="record.adminid != null">
+        adminid = #{record.adminid,jdbcType=INTEGER},
+      </if>
+      <if test="record.tel != null">
+        tel = #{record.tel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.registerdate != null">
+        registerdate = #{record.registerdate,jdbcType=DATE},
+      </if>
+      <if test="record.compname != null">
+        compname = #{record.compname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.founddate != null">
+        founddate = #{record.founddate,jdbcType=DATE},
+      </if>
+      <if test="record.compproperty != null">
+        compproperty = #{record.compproperty,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mainpost != null">
+        mainpost = #{record.mainpost,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mainwork != null">
+        mainwork = #{record.mainwork,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clicknum != null">
+        clicknum = #{record.clicknum,jdbcType=INTEGER},
+      </if>
+      <if test="record.station != null">
+        station = #{record.station,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update company
+    set companyid = #{record.companyid,jdbcType=INTEGER},
+      comploginid = #{record.comploginid,jdbcType=INTEGER},
+      adminid = #{record.adminid,jdbcType=INTEGER},
+      tel = #{record.tel,jdbcType=VARCHAR},
+      registerdate = #{record.registerdate,jdbcType=DATE},
+      compname = #{record.compname,jdbcType=VARCHAR},
+      founddate = #{record.founddate,jdbcType=DATE},
+      compproperty = #{record.compproperty,jdbcType=VARCHAR},
+      mainpost = #{record.mainpost,jdbcType=VARCHAR},
+      mainwork = #{record.mainwork,jdbcType=VARCHAR},
+      clicknum = #{record.clicknum,jdbcType=INTEGER},
+      station = #{record.station,jdbcType=BIT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.first.bean.Company">
+    update company
+    <set>
+      <if test="comploginid != null">
+        comploginid = #{comploginid,jdbcType=INTEGER},
+      </if>
+      <if test="adminid != null">
+        adminid = #{adminid,jdbcType=INTEGER},
+      </if>
+      <if test="tel != null">
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="registerdate != null">
+        registerdate = #{registerdate,jdbcType=DATE},
+      </if>
+      <if test="compname != null">
+        compname = #{compname,jdbcType=VARCHAR},
+      </if>
+      <if test="founddate != null">
+        founddate = #{founddate,jdbcType=DATE},
+      </if>
+      <if test="compproperty != null">
+        compproperty = #{compproperty,jdbcType=VARCHAR},
+      </if>
+      <if test="mainpost != null">
+        mainpost = #{mainpost,jdbcType=VARCHAR},
+      </if>
+      <if test="mainwork != null">
+        mainwork = #{mainwork,jdbcType=VARCHAR},
+      </if>
+      <if test="clicknum != null">
+        clicknum = #{clicknum,jdbcType=INTEGER},
+      </if>
+      <if test="station != null">
+        station = #{station,jdbcType=BIT},
+      </if>
+    </set>
+    where companyid = #{companyid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.first.bean.Company">
+    update company
+    set comploginid = #{comploginid,jdbcType=INTEGER},
+      adminid = #{adminid,jdbcType=INTEGER},
+      tel = #{tel,jdbcType=VARCHAR},
+      registerdate = #{registerdate,jdbcType=DATE},
+      compname = #{compname,jdbcType=VARCHAR},
+      founddate = #{founddate,jdbcType=DATE},
+      compproperty = #{compproperty,jdbcType=VARCHAR},
+      mainpost = #{mainpost,jdbcType=VARCHAR},
+      mainwork = #{mainwork,jdbcType=VARCHAR},
+      clicknum = #{clicknum,jdbcType=INTEGER},
+      station = #{station,jdbcType=BIT}
+    where companyid = #{companyid,jdbcType=INTEGER}
+  </update>
+</mapper>

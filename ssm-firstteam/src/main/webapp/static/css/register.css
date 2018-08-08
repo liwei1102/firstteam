@@ -1,0 +1,16 @@
+.input-group-addon{
+	width: 81.6px;
+}
+.form-control{
+	width: 250px;
+}
+label{
+	margin-bottom: 0px;
+}
+.error{
+	color: red;
+	font-size: 14px;
+}
+.bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+	width: 150px;
+}

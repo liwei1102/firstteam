@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.first.dao.NewsMapper">
+  <resultMap id="BaseResultMap" type="com.first.bean.News">
+    <id column="newsid" jdbcType="INTEGER" property="newsid" />
+    <result column="adminid" jdbcType="INTEGER" property="adminid" />
+    <result column="newshead" jdbcType="VARCHAR" property="newshead" />
+    <result column="publishcomp" jdbcType="VARCHAR" property="publishcomp" />
+    <result column="publishdate" jdbcType="DATE" property="publishdate" />
+    <result column="readerscope" jdbcType="BIT" property="readerscope" />
+    <result column="keyword" jdbcType="VARCHAR" property="keyword" />
+    <result column="click" jdbcType="INTEGER" property="click" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.first.bean.News">
+    <result column="newstext" jdbcType="LONGVARCHAR" property="newstext" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    newsid, adminid, newshead, publishcomp, publishdate, readerscope, keyword, click
+  </sql>
+  <sql id="Blob_Column_List">
+    newstext
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.first.bean.NewsExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from news
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.first.bean.NewsExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from news
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from news
+    where newsid = #{newsid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from news
+    where newsid = #{newsid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.first.bean.NewsExample">
+    delete from news
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.first.bean.News">
+    insert into news (newsid, adminid, newshead, 
+      publishcomp, publishdate, readerscope, 
+      keyword, click, newstext
+      )
+    values (#{newsid,jdbcType=INTEGER}, #{adminid,jdbcType=INTEGER}, #{newshead,jdbcType=VARCHAR}, 
+      #{publishcomp,jdbcType=VARCHAR}, #{publishdate,jdbcType=DATE}, #{readerscope,jdbcType=BIT}, 
+      #{keyword,jdbcType=VARCHAR}, #{click,jdbcType=INTEGER}, #{newstext,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.first.bean.News">
+    insert into news
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="newsid != null">
+        newsid,
+      </if>
+      <if test="adminid != null">
+        adminid,
+      </if>
+      <if test="newshead != null">
+        newshead,
+      </if>
+      <if test="publishcomp != null">
+        publishcomp,
+      </if>
+      <if test="publishdate != null">
+        publishdate,
+      </if>
+      <if test="readerscope != null">
+        readerscope,
+      </if>
+      <if test="keyword != null">
+        keyword,
+      </if>
+      <if test="click != null">
+        click,
+      </if>
+      <if test="newstext != null">
+        newstext,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="newsid != null">
+        #{newsid,jdbcType=INTEGER},
+      </if>
+      <if test="adminid != null">
+        #{adminid,jdbcType=INTEGER},
+      </if>
+      <if test="newshead != null">
+        #{newshead,jdbcType=VARCHAR},
+      </if>
+      <if test="publishcomp != null">
+        #{publishcomp,jdbcType=VARCHAR},
+      </if>
+      <if test="publishdate != null">
+        #{publishdate,jdbcType=DATE},
+      </if>
+      <if test="readerscope != null">
+        #{readerscope,jdbcType=BIT},
+      </if>
+      <if test="keyword != null">
+        #{keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="click != null">
+        #{click,jdbcType=INTEGER},
+      </if>
+      <if test="newstext != null">
+        #{newstext,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.first.bean.NewsExample" resultType="java.lang.Long">
+    select count(*) from news
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update news
+    <set>
+      <if test="record.newsid != null">
+        newsid = #{record.newsid,jdbcType=INTEGER},
+      </if>
+      <if test="record.adminid != null">
+        adminid = #{record.adminid,jdbcType=INTEGER},
+      </if>
+      <if test="record.newshead != null">
+        newshead = #{record.newshead,jdbcType=VARCHAR},
+      </if>
+      <if test="record.publishcomp != null">
+        publishcomp = #{record.publishcomp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.publishdate != null">
+        publishdate = #{record.publishdate,jdbcType=DATE},
+      </if>
+      <if test="record.readerscope != null">
+        readerscope = #{record.readerscope,jdbcType=BIT},
+      </if>
+      <if test="record.keyword != null">
+        keyword = #{record.keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.click != null">
+        click = #{record.click,jdbcType=INTEGER},
+      </if>
+      <if test="record.newstext != null">
+        newstext = #{record.newstext,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update news
+    set newsid = #{record.newsid,jdbcType=INTEGER},
+      adminid = #{record.adminid,jdbcType=INTEGER},
+      newshead = #{record.newshead,jdbcType=VARCHAR},
+      publishcomp = #{record.publishcomp,jdbcType=VARCHAR},
+      publishdate = #{record.publishdate,jdbcType=DATE},
+      readerscope = #{record.readerscope,jdbcType=BIT},
+      keyword = #{record.keyword,jdbcType=VARCHAR},
+      click = #{record.click,jdbcType=INTEGER},
+      newstext = #{record.newstext,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update news
+    set newsid = #{record.newsid,jdbcType=INTEGER},
+      adminid = #{record.adminid,jdbcType=INTEGER},
+      newshead = #{record.newshead,jdbcType=VARCHAR},
+      publishcomp = #{record.publishcomp,jdbcType=VARCHAR},
+      publishdate = #{record.publishdate,jdbcType=DATE},
+      readerscope = #{record.readerscope,jdbcType=BIT},
+      keyword = #{record.keyword,jdbcType=VARCHAR},
+      click = #{record.click,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.first.bean.News">
+    update news
+    <set>
+      <if test="adminid != null">
+        adminid = #{adminid,jdbcType=INTEGER},
+      </if>
+      <if test="newshead != null">
+        newshead = #{newshead,jdbcType=VARCHAR},
+      </if>
+      <if test="publishcomp != null">
+        publishcomp = #{publishcomp,jdbcType=VARCHAR},
+      </if>
+      <if test="publishdate != null">
+        publishdate = #{publishdate,jdbcType=DATE},
+      </if>
+      <if test="readerscope != null">
+        readerscope = #{readerscope,jdbcType=BIT},
+      </if>
+      <if test="keyword != null">
+        keyword = #{keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="click != null">
+        click = #{click,jdbcType=INTEGER},
+      </if>
+      <if test="newstext != null">
+        newstext = #{newstext,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where newsid = #{newsid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.first.bean.News">
+    update news
+    set adminid = #{adminid,jdbcType=INTEGER},
+      newshead = #{newshead,jdbcType=VARCHAR},
+      publishcomp = #{publishcomp,jdbcType=VARCHAR},
+      publishdate = #{publishdate,jdbcType=DATE},
+      readerscope = #{readerscope,jdbcType=BIT},
+      keyword = #{keyword,jdbcType=VARCHAR},
+      click = #{click,jdbcType=INTEGER},
+      newstext = #{newstext,jdbcType=LONGVARCHAR}
+    where newsid = #{newsid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.first.bean.News">
+    update news
+    set adminid = #{adminid,jdbcType=INTEGER},
+      newshead = #{newshead,jdbcType=VARCHAR},
+      publishcomp = #{publishcomp,jdbcType=VARCHAR},
+      publishdate = #{publishdate,jdbcType=DATE},
+      readerscope = #{readerscope,jdbcType=BIT},
+      keyword = #{keyword,jdbcType=VARCHAR},
+      click = #{click,jdbcType=INTEGER}
+    where newsid = #{newsid,jdbcType=INTEGER}
+  </update>
+</mapper>

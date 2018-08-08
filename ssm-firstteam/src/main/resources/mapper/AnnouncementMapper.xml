@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.first.dao.AnnouncementMapper">
+  <resultMap id="BaseResultMap" type="com.first.bean.Announcement">
+    <id column="annoid" jdbcType="INTEGER" property="annoid" />
+    <result column="adminid" jdbcType="INTEGER" property="adminid" />
+    <result column="annoname" jdbcType="VARCHAR" property="annoname" />
+    <result column="issuer" jdbcType="VARCHAR" property="issuer" />
+    <result column="publishdate" jdbcType="DATE" property="publishdate" />
+    <result column="auditunit" jdbcType="VARCHAR" property="auditunit" />
+    <result column="picturepath" jdbcType="VARCHAR" property="picturepath" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.first.bean.Announcement">
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    annoid, adminid, annoname, issuer, publishdate, auditunit, picturepath
+  </sql>
+  <sql id="Blob_Column_List">
+    content
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.first.bean.AnnouncementExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from announcement
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.first.bean.AnnouncementExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from announcement
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from announcement
+    where annoid = #{annoid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from announcement
+    where annoid = #{annoid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.first.bean.AnnouncementExample">
+    delete from announcement
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.first.bean.Announcement">
+    insert into announcement (annoid, adminid, annoname, 
+      issuer, publishdate, auditunit, 
+      picturepath, content)
+    values (#{annoid,jdbcType=INTEGER}, #{adminid,jdbcType=INTEGER}, #{annoname,jdbcType=VARCHAR}, 
+      #{issuer,jdbcType=VARCHAR}, #{publishdate,jdbcType=DATE}, #{auditunit,jdbcType=VARCHAR}, 
+      #{picturepath,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.first.bean.Announcement">
+    insert into announcement
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="annoid != null">
+        annoid,
+      </if>
+      <if test="adminid != null">
+        adminid,
+      </if>
+      <if test="annoname != null">
+        annoname,
+      </if>
+      <if test="issuer != null">
+        issuer,
+      </if>
+      <if test="publishdate != null">
+        publishdate,
+      </if>
+      <if test="auditunit != null">
+        auditunit,
+      </if>
+      <if test="picturepath != null">
+        picturepath,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="annoid != null">
+        #{annoid,jdbcType=INTEGER},
+      </if>
+      <if test="adminid != null">
+        #{adminid,jdbcType=INTEGER},
+      </if>
+      <if test="annoname != null">
+        #{annoname,jdbcType=VARCHAR},
+      </if>
+      <if test="issuer != null">
+        #{issuer,jdbcType=VARCHAR},
+      </if>
+      <if test="publishdate != null">
+        #{publishdate,jdbcType=DATE},
+      </if>
+      <if test="auditunit != null">
+        #{auditunit,jdbcType=VARCHAR},
+      </if>
+      <if test="picturepath != null">
+        #{picturepath,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.first.bean.AnnouncementExample" resultType="java.lang.Long">
+    select count(*) from announcement
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update announcement
+    <set>
+      <if test="record.annoid != null">
+        annoid = #{record.annoid,jdbcType=INTEGER},
+      </if>
+      <if test="record.adminid != null">
+        adminid = #{record.adminid,jdbcType=INTEGER},
+      </if>
+      <if test="record.annoname != null">
+        annoname = #{record.annoname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.issuer != null">
+        issuer = #{record.issuer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.publishdate != null">
+        publishdate = #{record.publishdate,jdbcType=DATE},
+      </if>
+      <if test="record.auditunit != null">
+        auditunit = #{record.auditunit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.picturepath != null">
+        picturepath = #{record.picturepath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.content != null">
+        content = #{record.content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update announcement
+    set annoid = #{record.annoid,jdbcType=INTEGER},
+      adminid = #{record.adminid,jdbcType=INTEGER},
+      annoname = #{record.annoname,jdbcType=VARCHAR},
+      issuer = #{record.issuer,jdbcType=VARCHAR},
+      publishdate = #{record.publishdate,jdbcType=DATE},
+      auditunit = #{record.auditunit,jdbcType=VARCHAR},
+      picturepath = #{record.picturepath,jdbcType=VARCHAR},
+      content = #{record.content,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update announcement
+    set annoid = #{record.annoid,jdbcType=INTEGER},
+      adminid = #{record.adminid,jdbcType=INTEGER},
+      annoname = #{record.annoname,jdbcType=VARCHAR},
+      issuer = #{record.issuer,jdbcType=VARCHAR},
+      publishdate = #{record.publishdate,jdbcType=DATE},
+      auditunit = #{record.auditunit,jdbcType=VARCHAR},
+      picturepath = #{record.picturepath,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.first.bean.Announcement">
+    update announcement
+    <set>
+      <if test="adminid != null">
+        adminid = #{adminid,jdbcType=INTEGER},
+      </if>
+      <if test="annoname != null">
+        annoname = #{annoname,jdbcType=VARCHAR},
+      </if>
+      <if test="issuer != null">
+        issuer = #{issuer,jdbcType=VARCHAR},
+      </if>
+      <if test="publishdate != null">
+        publishdate = #{publishdate,jdbcType=DATE},
+      </if>
+      <if test="auditunit != null">
+        auditunit = #{auditunit,jdbcType=VARCHAR},
+      </if>
+      <if test="picturepath != null">
+        picturepath = #{picturepath,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where annoid = #{annoid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.first.bean.Announcement">
+    update announcement
+    set adminid = #{adminid,jdbcType=INTEGER},
+      annoname = #{annoname,jdbcType=VARCHAR},
+      issuer = #{issuer,jdbcType=VARCHAR},
+      publishdate = #{publishdate,jdbcType=DATE},
+      auditunit = #{auditunit,jdbcType=VARCHAR},
+      picturepath = #{picturepath,jdbcType=VARCHAR},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where annoid = #{annoid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.first.bean.Announcement">
+    update announcement
+    set adminid = #{adminid,jdbcType=INTEGER},
+      annoname = #{annoname,jdbcType=VARCHAR},
+      issuer = #{issuer,jdbcType=VARCHAR},
+      publishdate = #{publishdate,jdbcType=DATE},
+      auditunit = #{auditunit,jdbcType=VARCHAR},
+      picturepath = #{picturepath,jdbcType=VARCHAR}
+    where annoid = #{annoid,jdbcType=INTEGER}
+  </update>
+</mapper>

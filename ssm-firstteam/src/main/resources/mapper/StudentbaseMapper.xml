@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.first.dao.StudentbaseMapper">
+  <resultMap id="BaseResultMap" type="com.first.bean.Studentbase">
+    <id column="stuid" jdbcType="INTEGER" property="stuid" />
+    <result column="stuloginid" jdbcType="INTEGER" property="stuloginid" />
+    <result column="adminid" jdbcType="INTEGER" property="adminid" />
+    <result column="studentid" jdbcType="INTEGER" property="studentid" />
+    <result column="stuname" jdbcType="VARCHAR" property="stuname" />
+    <result column="gender" jdbcType="VARCHAR" property="gender" />
+    <result column="identifynumber" jdbcType="VARCHAR" property="identifynumber" />
+    <result column="registerdate" jdbcType="DATE" property="registerdate" />
+    <result column="birthdate" jdbcType="DATE" property="birthdate" />
+    <result column="originplace" jdbcType="VARCHAR" property="originplace" />
+    <result column="nation" jdbcType="VARCHAR" property="nation" />
+    <result column="lengths" jdbcType="VARCHAR" property="lengths" />
+    <result column="politticalstatus" jdbcType="VARCHAR" property="politticalstatus" />
+    <result column="college" jdbcType="VARCHAR" property="college" />
+    <result column="major" jdbcType="VARCHAR" property="major" />
+    <result column="station" jdbcType="BIT" property="station" />
+    <result column="click" jdbcType="INTEGER" property="click" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    stuid, stuloginid, adminid, studentid, stuname, gender, identifynumber, registerdate, 
+    birthdate, originplace, nation, lengths, politticalstatus, college, major, station, 
+    click
+  </sql>
+  <select id="selectByExample" parameterType="com.first.bean.StudentbaseExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from studentbase
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from studentbase
+    where stuid = #{stuid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from studentbase
+    where stuid = #{stuid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.first.bean.StudentbaseExample">
+    delete from studentbase
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.first.bean.Studentbase">
+    insert into studentbase (stuid, stuloginid, adminid, 
+      studentid, stuname, gender, 
+      identifynumber, registerdate, birthdate, 
+      originplace, nation, lengths, 
+      politticalstatus, college, major, 
+      station, click)
+    values (#{stuid,jdbcType=INTEGER}, #{stuloginid,jdbcType=INTEGER}, #{adminid,jdbcType=INTEGER}, 
+      #{studentid,jdbcType=INTEGER}, #{stuname,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, 
+      #{identifynumber,jdbcType=VARCHAR}, #{registerdate,jdbcType=DATE}, #{birthdate,jdbcType=DATE}, 
+      #{originplace,jdbcType=VARCHAR}, #{nation,jdbcType=VARCHAR}, #{lengths,jdbcType=VARCHAR}, 
+      #{politticalstatus,jdbcType=VARCHAR}, #{college,jdbcType=VARCHAR}, #{major,jdbcType=VARCHAR}, 
+      #{station,jdbcType=BIT}, #{click,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.first.bean.Studentbase">
+    insert into studentbase
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="stuid != null">
+        stuid,
+      </if>
+      <if test="stuloginid != null">
+        stuloginid,
+      </if>
+      <if test="adminid != null">
+        adminid,
+      </if>
+      <if test="studentid != null">
+        studentid,
+      </if>
+      <if test="stuname != null">
+        stuname,
+      </if>
+      <if test="gender != null">
+        gender,
+      </if>
+      <if test="identifynumber != null">
+        identifynumber,
+      </if>
+      <if test="registerdate != null">
+        registerdate,
+      </if>
+      <if test="birthdate != null">
+        birthdate,
+      </if>
+      <if test="originplace != null">
+        originplace,
+      </if>
+      <if test="nation != null">
+        nation,
+      </if>
+      <if test="lengths != null">
+        lengths,
+      </if>
+      <if test="politticalstatus != null">
+        politticalstatus,
+      </if>
+      <if test="college != null">
+        college,
+      </if>
+      <if test="major != null">
+        major,
+      </if>
+      <if test="station != null">
+        station,
+      </if>
+      <if test="click != null">
+        click,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="stuid != null">
+        #{stuid,jdbcType=INTEGER},
+      </if>
+      <if test="stuloginid != null">
+        #{stuloginid,jdbcType=INTEGER},
+      </if>
+      <if test="adminid != null">
+        #{adminid,jdbcType=INTEGER},
+      </if>
+      <if test="studentid != null">
+        #{studentid,jdbcType=INTEGER},
+      </if>
+      <if test="stuname != null">
+        #{stuname,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="identifynumber != null">
+        #{identifynumber,jdbcType=VARCHAR},
+      </if>
+      <if test="registerdate != null">
+        #{registerdate,jdbcType=DATE},
+      </if>
+      <if test="birthdate != null">
+        #{birthdate,jdbcType=DATE},
+      </if>
+      <if test="originplace != null">
+        #{originplace,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null">
+        #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="lengths != null">
+        #{lengths,jdbcType=VARCHAR},
+      </if>
+      <if test="politticalstatus != null">
+        #{politticalstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="college != null">
+        #{college,jdbcType=VARCHAR},
+      </if>
+      <if test="major != null">
+        #{major,jdbcType=VARCHAR},
+      </if>
+      <if test="station != null">
+        #{station,jdbcType=BIT},
+      </if>
+      <if test="click != null">
+        #{click,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.first.bean.StudentbaseExample" resultType="java.lang.Long">
+    select count(*) from studentbase
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update studentbase
+    <set>
+      <if test="record.stuid != null">
+        stuid = #{record.stuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.stuloginid != null">
+        stuloginid = #{record.stuloginid,jdbcType=INTEGER},
+      </if>
+      <if test="record.adminid != null">
+        adminid = #{record.adminid,jdbcType=INTEGER},
+      </if>
+      <if test="record.studentid != null">
+        studentid = #{record.studentid,jdbcType=INTEGER},
+      </if>
+      <if test="record.stuname != null">
+        stuname = #{record.stuname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gender != null">
+        gender = #{record.gender,jdbcType=VARCHAR},
+      </if>
+      <if test="record.identifynumber != null">
+        identifynumber = #{record.identifynumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.registerdate != null">
+        registerdate = #{record.registerdate,jdbcType=DATE},
+      </if>
+      <if test="record.birthdate != null">
+        birthdate = #{record.birthdate,jdbcType=DATE},
+      </if>
+      <if test="record.originplace != null">
+        originplace = #{record.originplace,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nation != null">
+        nation = #{record.nation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lengths != null">
+        lengths = #{record.lengths,jdbcType=VARCHAR},
+      </if>
+      <if test="record.politticalstatus != null">
+        politticalstatus = #{record.politticalstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.college != null">
+        college = #{record.college,jdbcType=VARCHAR},
+      </if>
+      <if test="record.major != null">
+        major = #{record.major,jdbcType=VARCHAR},
+      </if>
+      <if test="record.station != null">
+        station = #{record.station,jdbcType=BIT},
+      </if>
+      <if test="record.click != null">
+        click = #{record.click,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update studentbase
+    set stuid = #{record.stuid,jdbcType=INTEGER},
+      stuloginid = #{record.stuloginid,jdbcType=INTEGER},
+      adminid = #{record.adminid,jdbcType=INTEGER},
+      studentid = #{record.studentid,jdbcType=INTEGER},
+      stuname = #{record.stuname,jdbcType=VARCHAR},
+      gender = #{record.gender,jdbcType=VARCHAR},
+      identifynumber = #{record.identifynumber,jdbcType=VARCHAR},
+      registerdate = #{record.registerdate,jdbcType=DATE},
+      birthdate = #{record.birthdate,jdbcType=DATE},
+      originplace = #{record.originplace,jdbcType=VARCHAR},
+      nation = #{record.nation,jdbcType=VARCHAR},
+      lengths = #{record.lengths,jdbcType=VARCHAR},
+      politticalstatus = #{record.politticalstatus,jdbcType=VARCHAR},
+      college = #{record.college,jdbcType=VARCHAR},
+      major = #{record.major,jdbcType=VARCHAR},
+      station = #{record.station,jdbcType=BIT},
+      click = #{record.click,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.first.bean.Studentbase">
+    update studentbase
+    <set>
+      <if test="stuloginid != null">
+        stuloginid = #{stuloginid,jdbcType=INTEGER},
+      </if>
+      <if test="adminid != null">
+        adminid = #{adminid,jdbcType=INTEGER},
+      </if>
+      <if test="studentid != null">
+        studentid = #{studentid,jdbcType=INTEGER},
+      </if>
+      <if test="stuname != null">
+        stuname = #{stuname,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        gender = #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="identifynumber != null">
+        identifynumber = #{identifynumber,jdbcType=VARCHAR},
+      </if>
+      <if test="registerdate != null">
+        registerdate = #{registerdate,jdbcType=DATE},
+      </if>
+      <if test="birthdate != null">
+        birthdate = #{birthdate,jdbcType=DATE},
+      </if>
+      <if test="originplace != null">
+        originplace = #{originplace,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null">
+        nation = #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="lengths != null">
+        lengths = #{lengths,jdbcType=VARCHAR},
+      </if>
+      <if test="politticalstatus != null">
+        politticalstatus = #{politticalstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="college != null">
+        college = #{college,jdbcType=VARCHAR},
+      </if>
+      <if test="major != null">
+        major = #{major,jdbcType=VARCHAR},
+      </if>
+      <if test="station != null">
+        station = #{station,jdbcType=BIT},
+      </if>
+      <if test="click != null">
+        click = #{click,jdbcType=INTEGER},
+      </if>
+    </set>
+    where stuid = #{stuid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.first.bean.Studentbase">
+    update studentbase
+    set stuloginid = #{stuloginid,jdbcType=INTEGER},
+      adminid = #{adminid,jdbcType=INTEGER},
+      studentid = #{studentid,jdbcType=INTEGER},
+      stuname = #{stuname,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=VARCHAR},
+      identifynumber = #{identifynumber,jdbcType=VARCHAR},
+      registerdate = #{registerdate,jdbcType=DATE},
+      birthdate = #{birthdate,jdbcType=DATE},
+      originplace = #{originplace,jdbcType=VARCHAR},
+      nation = #{nation,jdbcType=VARCHAR},
+      lengths = #{lengths,jdbcType=VARCHAR},
+      politticalstatus = #{politticalstatus,jdbcType=VARCHAR},
+      college = #{college,jdbcType=VARCHAR},
+      major = #{major,jdbcType=VARCHAR},
+      station = #{station,jdbcType=BIT},
+      click = #{click,jdbcType=INTEGER}
+    where stuid = #{stuid,jdbcType=INTEGER}
+  </update>
+</mapper>

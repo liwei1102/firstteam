@@ -1,0 +1,118 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.liwei</groupId>
+  <artifactId>ssm-firstteam</artifactId>
+  <packaging>war</packaging>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>ssm-firstteam Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+   <!-- 引入项目以来的jar包      在maven  repository官网直接引用 -->
+  <dependencies>
+  	<!-- 导入Spring MVC Spring包	 搜索spring webmvc-->
+	<dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-webmvc</artifactId>
+    	<version>4.3.7.RELEASE</version>
+	</dependency>
+	
+	<!-- Spring-Test模块 -->
+	<dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-test</artifactId>
+    	<version>4.3.7.RELEASE</version>
+    	<scope>test</scope>
+	</dependency>
+	
+	
+	<!-- 导入Spring jdbc包	搜索spring jdbc -->
+	<dependency>
+    	<groupId>org.springframework</groupId>
+   		<artifactId>spring-jdbc</artifactId>
+  		<version>4.3.7.RELEASE</version>
+	</dependency>
+  	
+  	<!-- 导入Spring 面向切面编程   搜索spring Aspect -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-aspects</artifactId>
+	    <version>4.3.7.RELEASE</version>
+	</dependency>
+  	
+  	<!-- 导入mybatis包	搜索mybatis -->
+	<dependency>
+	    <groupId>org.mybatis</groupId>
+	    <artifactId>mybatis</artifactId>
+	    <version>3.4.2</version>
+	</dependency>
+  	
+  	<!-- mybatis整合spring适配包    搜索mybatis spring  -->
+	<dependency>
+	    <groupId>org.mybatis</groupId>
+	    <artifactId>mybatis-spring</artifactId>
+	    <version>1.3.1</version>
+	</dependency>
+	
+	<!-- 数据库连接池与驱动     搜索c3p0     -->
+	<dependency>
+	    <groupId>c3p0</groupId>
+	    <artifactId>c3p0</artifactId>
+	    <version>0.9.1.2</version>
+	</dependency>
+	
+	<dependency>
+	    <groupId>mysql</groupId>
+	    <artifactId>mysql-connector-java</artifactId>
+	    <version>5.1.41</version>
+	</dependency>
+	
+	<!-- 引入（jstl,servlet-api,jnuit） -->
+	<dependency>
+	    <groupId>jstl</groupId>
+	    <artifactId>jstl</artifactId>
+	    <version>1.2</version>
+	</dependency>
+	
+	<!-- <dependency>
+	    <groupId>javax.servlet</groupId>
+	    <artifactId>servlet-api</artifactId>
+	    <version>2.5</version>
+	    <scope>provided</scope>
+	</dependency> -->
+	
+	<!-- 需要servlet3.0的支持 -->
+	<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+	<dependency>
+	    <groupId>javax.servlet</groupId>
+	    <artifactId>javax.servlet-api</artifactId>
+	    <version>3.0.1</version>
+	    <scope>provided</scope>
+	</dependency>
+	
+	<dependency>
+	    <groupId>junit</groupId>
+	    <artifactId>junit</artifactId>
+	    <version>4.12</version>
+	    <scope>test</scope>
+	</dependency>
+  
+  	<!-- mybatis generator   -->
+	<dependency>
+	    <groupId>org.mybatis.generator</groupId>
+	    <artifactId>mybatis-generator-core</artifactId>
+	    <version>1.3.7</version>
+	</dependency>
+  	
+  	<!-- 引入pageHelper分页插件 -->
+  	<dependency>
+	    <groupId>com.github.pagehelper</groupId>
+	    <artifactId>pagehelper</artifactId>
+	    <version>5.0.0</version>
+    </dependency>
+  	
+  	
+  </dependencies>
+  <build>
+    <finalName>ssm-firstteam</finalName>
+  </build>
+</project>

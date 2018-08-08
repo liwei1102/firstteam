@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+  <context id="DB2Tables" targetRuntime="MyBatis3">
+  	
+  	<commentGenerator>
+ 		 <property name="suppressAllComments" value="true" />
+	</commentGenerator>
+  	
+  	<!-- 配置数据库连接 -->
+    <jdbcConnection 
+    	driverClass="com.mysql.jdbc.Driver"
+        connectionURL="jdbc:mysql://localhost:3306/demo"
+        userId="root"
+        password="liwei">
+    </jdbcConnection>
+
+	<!-- 指定javaBean生成的位置 -->
+    <javaTypeResolver >
+      <property name="forceBigDecimals" value="false" />
+    </javaTypeResolver>
+
+	<!-- 指定javaBean生成 -->
+    <javaModelGenerator 
+    	targetPackage="com.first.bean" 
+    	targetProject=".\src\main\java">
+      <property name="enableSubPackages" value="true" />
+      <property name="trimStrings" value="true" />
+    </javaModelGenerator>
+
+	<!-- 指定sql映射文件生成的位置 -->
+    <sqlMapGenerator 
+    	targetPackage="mapper"  
+    	targetProject=".\src\main\resources">
+      <property name="enableSubPackages" value="true" />
+    </sqlMapGenerator>
+
+	<!-- 指定dao接口目录 -->
+    <javaClientGenerator type="XMLMAPPER" 
+    	targetPackage="com.first.dao"  
+    	targetProject=".\src\main\java">
+      <property name="enableSubPackages" value="true" />
+    </javaClientGenerator>
+
+	<!-- 指定每个表的生成策略 -->
+    <table tableName="administrator" domainObjectName="Administrator"></table>
+    <table tableName="administratorlogin" domainObjectName="Administratorlogin"></table>
+	<table tableName="announcement" domainObjectName="Announcement"></table>
+	<table tableName="college" domainObjectName="College"></table>
+	<table tableName="collegeyearrate" domainObjectName="Collegeyearrate"></table>
+	<table tableName="company" domainObjectName="Company"></table>
+	<table tableName="companylogin" domainObjectName="Companylogin"></table>
+	<table tableName="comp_resume" domainObjectName="Comp_resume"></table>
+	<table tableName="comp_stu" domainObjectName="Comp_stu"></table>
+	<table tableName="employeementpolicy" domainObjectName="Employeementpolicy"></table>
+	<table tableName="household" domainObjectName="Household"></table>
+	<table tableName="news" domainObjectName="News"></table>
+	<table tableName="recruitmentinfo" domainObjectName="Recruitmentinfo"></table>
+	<table tableName="resume" domainObjectName="Resume"></table>
+	<table tableName="school" domainObjectName="School"></table>
+	<table tableName="studentbase" domainObjectName="Studentbase"></table>
+	<table tableName="studentextend" domainObjectName="Studentextend"></table>
+	<table tableName="studentlogin" domainObjectName="Studentlogin"></table>
+	<table tableName="stuoverheadinfo" domainObjectName="Stuoverheadinfo"></table>
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </context>
+</generatorConfiguration>

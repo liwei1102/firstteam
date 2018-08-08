@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.first.dao.StudentextendMapper">
+  <resultMap id="BaseResultMap" type="com.first.bean.Studentextend">
+    <id column="stuextendid" jdbcType="INTEGER" property="stuextendid" />
+    <result column="stuid" jdbcType="INTEGER" property="stuid" />
+    <result column="foreignlanguages" jdbcType="VARCHAR" property="foreignlanguages" />
+    <result column="forlangproficiency" jdbcType="VARCHAR" property="forlangproficiency" />
+    <result column="computerlevel" jdbcType="VARCHAR" property="computerlevel" />
+    <result column="mandarinlevel" jdbcType="VARCHAR" property="mandarinlevel" />
+    <result column="expectjoblocation" jdbcType="VARCHAR" property="expectjoblocation" />
+    <result column="expectjobpost" jdbcType="VARCHAR" property="expectjobpost" />
+    <result column="expectsalary" jdbcType="VARCHAR" property="expectsalary" />
+    <result column="tel" jdbcType="VARCHAR" property="tel" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="picturepath" jdbcType="VARCHAR" property="picturepath" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.first.bean.StudentextendWithBLOBs">
+    <result column="specialty" jdbcType="LONGVARCHAR" property="specialty" />
+    <result column="intershipexperience" jdbcType="LONGVARCHAR" property="intershipexperience" />
+    <result column="getwinning" jdbcType="LONGVARCHAR" property="getwinning" />
+    <result column="evaluation" jdbcType="LONGVARCHAR" property="evaluation" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    stuextendid, stuid, foreignlanguages, forlangproficiency, computerlevel, mandarinlevel, 
+    expectjoblocation, expectjobpost, expectsalary, tel, address, picturepath
+  </sql>
+  <sql id="Blob_Column_List">
+    specialty, intershipexperience, getwinning, evaluation
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.first.bean.StudentextendExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from studentextend
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.first.bean.StudentextendExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from studentextend
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from studentextend
+    where stuextendid = #{stuextendid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from studentextend
+    where stuextendid = #{stuextendid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.first.bean.StudentextendExample">
+    delete from studentextend
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.first.bean.StudentextendWithBLOBs">
+    insert into studentextend (stuextendid, stuid, foreignlanguages, 
+      forlangproficiency, computerlevel, mandarinlevel, 
+      expectjoblocation, expectjobpost, expectsalary, 
+      tel, address, picturepath, 
+      specialty, intershipexperience, 
+      getwinning, evaluation)
+    values (#{stuextendid,jdbcType=INTEGER}, #{stuid,jdbcType=INTEGER}, #{foreignlanguages,jdbcType=VARCHAR}, 
+      #{forlangproficiency,jdbcType=VARCHAR}, #{computerlevel,jdbcType=VARCHAR}, #{mandarinlevel,jdbcType=VARCHAR}, 
+      #{expectjoblocation,jdbcType=VARCHAR}, #{expectjobpost,jdbcType=VARCHAR}, #{expectsalary,jdbcType=VARCHAR}, 
+      #{tel,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{picturepath,jdbcType=VARCHAR}, 
+      #{specialty,jdbcType=LONGVARCHAR}, #{intershipexperience,jdbcType=LONGVARCHAR}, 
+      #{getwinning,jdbcType=LONGVARCHAR}, #{evaluation,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.first.bean.StudentextendWithBLOBs">
+    insert into studentextend
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="stuextendid != null">
+        stuextendid,
+      </if>
+      <if test="stuid != null">
+        stuid,
+      </if>
+      <if test="foreignlanguages != null">
+        foreignlanguages,
+      </if>
+      <if test="forlangproficiency != null">
+        forlangproficiency,
+      </if>
+      <if test="computerlevel != null">
+        computerlevel,
+      </if>
+      <if test="mandarinlevel != null">
+        mandarinlevel,
+      </if>
+      <if test="expectjoblocation != null">
+        expectjoblocation,
+      </if>
+      <if test="expectjobpost != null">
+        expectjobpost,
+      </if>
+      <if test="expectsalary != null">
+        expectsalary,
+      </if>
+      <if test="tel != null">
+        tel,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="picturepath != null">
+        picturepath,
+      </if>
+      <if test="specialty != null">
+        specialty,
+      </if>
+      <if test="intershipexperience != null">
+        intershipexperience,
+      </if>
+      <if test="getwinning != null">
+        getwinning,
+      </if>
+      <if test="evaluation != null">
+        evaluation,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="stuextendid != null">
+        #{stuextendid,jdbcType=INTEGER},
+      </if>
+      <if test="stuid != null">
+        #{stuid,jdbcType=INTEGER},
+      </if>
+      <if test="foreignlanguages != null">
+        #{foreignlanguages,jdbcType=VARCHAR},
+      </if>
+      <if test="forlangproficiency != null">
+        #{forlangproficiency,jdbcType=VARCHAR},
+      </if>
+      <if test="computerlevel != null">
+        #{computerlevel,jdbcType=VARCHAR},
+      </if>
+      <if test="mandarinlevel != null">
+        #{mandarinlevel,jdbcType=VARCHAR},
+      </if>
+      <if test="expectjoblocation != null">
+        #{expectjoblocation,jdbcType=VARCHAR},
+      </if>
+      <if test="expectjobpost != null">
+        #{expectjobpost,jdbcType=VARCHAR},
+      </if>
+      <if test="expectsalary != null">
+        #{expectsalary,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="picturepath != null">
+        #{picturepath,jdbcType=VARCHAR},
+      </if>
+      <if test="specialty != null">
+        #{specialty,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="intershipexperience != null">
+        #{intershipexperience,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="getwinning != null">
+        #{getwinning,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="evaluation != null">
+        #{evaluation,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.first.bean.StudentextendExample" resultType="java.lang.Long">
+    select count(*) from studentextend
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update studentextend
+    <set>
+      <if test="record.stuextendid != null">
+        stuextendid = #{record.stuextendid,jdbcType=INTEGER},
+      </if>
+      <if test="record.stuid != null">
+        stuid = #{record.stuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.foreignlanguages != null">
+        foreignlanguages = #{record.foreignlanguages,jdbcType=VARCHAR},
+      </if>
+      <if test="record.forlangproficiency != null">
+        forlangproficiency = #{record.forlangproficiency,jdbcType=VARCHAR},
+      </if>
+      <if test="record.computerlevel != null">
+        computerlevel = #{record.computerlevel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mandarinlevel != null">
+        mandarinlevel = #{record.mandarinlevel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expectjoblocation != null">
+        expectjoblocation = #{record.expectjoblocation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expectjobpost != null">
+        expectjobpost = #{record.expectjobpost,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expectsalary != null">
+        expectsalary = #{record.expectsalary,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tel != null">
+        tel = #{record.tel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null">
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.picturepath != null">
+        picturepath = #{record.picturepath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.specialty != null">
+        specialty = #{record.specialty,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.intershipexperience != null">
+        intershipexperience = #{record.intershipexperience,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.getwinning != null">
+        getwinning = #{record.getwinning,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.evaluation != null">
+        evaluation = #{record.evaluation,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update studentextend
+    set stuextendid = #{record.stuextendid,jdbcType=INTEGER},
+      stuid = #{record.stuid,jdbcType=INTEGER},
+      foreignlanguages = #{record.foreignlanguages,jdbcType=VARCHAR},
+      forlangproficiency = #{record.forlangproficiency,jdbcType=VARCHAR},
+      computerlevel = #{record.computerlevel,jdbcType=VARCHAR},
+      mandarinlevel = #{record.mandarinlevel,jdbcType=VARCHAR},
+      expectjoblocation = #{record.expectjoblocation,jdbcType=VARCHAR},
+      expectjobpost = #{record.expectjobpost,jdbcType=VARCHAR},
+      expectsalary = #{record.expectsalary,jdbcType=VARCHAR},
+      tel = #{record.tel,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      picturepath = #{record.picturepath,jdbcType=VARCHAR},
+      specialty = #{record.specialty,jdbcType=LONGVARCHAR},
+      intershipexperience = #{record.intershipexperience,jdbcType=LONGVARCHAR},
+      getwinning = #{record.getwinning,jdbcType=LONGVARCHAR},
+      evaluation = #{record.evaluation,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update studentextend
+    set stuextendid = #{record.stuextendid,jdbcType=INTEGER},
+      stuid = #{record.stuid,jdbcType=INTEGER},
+      foreignlanguages = #{record.foreignlanguages,jdbcType=VARCHAR},
+      forlangproficiency = #{record.forlangproficiency,jdbcType=VARCHAR},
+      computerlevel = #{record.computerlevel,jdbcType=VARCHAR},
+      mandarinlevel = #{record.mandarinlevel,jdbcType=VARCHAR},
+      expectjoblocation = #{record.expectjoblocation,jdbcType=VARCHAR},
+      expectjobpost = #{record.expectjobpost,jdbcType=VARCHAR},
+      expectsalary = #{record.expectsalary,jdbcType=VARCHAR},
+      tel = #{record.tel,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      picturepath = #{record.picturepath,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.first.bean.StudentextendWithBLOBs">
+    update studentextend
+    <set>
+      <if test="stuid != null">
+        stuid = #{stuid,jdbcType=INTEGER},
+      </if>
+      <if test="foreignlanguages != null">
+        foreignlanguages = #{foreignlanguages,jdbcType=VARCHAR},
+      </if>
+      <if test="forlangproficiency != null">
+        forlangproficiency = #{forlangproficiency,jdbcType=VARCHAR},
+      </if>
+      <if test="computerlevel != null">
+        computerlevel = #{computerlevel,jdbcType=VARCHAR},
+      </if>
+      <if test="mandarinlevel != null">
+        mandarinlevel = #{mandarinlevel,jdbcType=VARCHAR},
+      </if>
+      <if test="expectjoblocation != null">
+        expectjoblocation = #{expectjoblocation,jdbcType=VARCHAR},
+      </if>
+      <if test="expectjobpost != null">
+        expectjobpost = #{expectjobpost,jdbcType=VARCHAR},
+      </if>
+      <if test="expectsalary != null">
+        expectsalary = #{expectsalary,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="picturepath != null">
+        picturepath = #{picturepath,jdbcType=VARCHAR},
+      </if>
+      <if test="specialty != null">
+        specialty = #{specialty,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="intershipexperience != null">
+        intershipexperience = #{intershipexperience,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="getwinning != null">
+        getwinning = #{getwinning,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="evaluation != null">
+        evaluation = #{evaluation,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where stuextendid = #{stuextendid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.first.bean.StudentextendWithBLOBs">
+    update studentextend
+    set stuid = #{stuid,jdbcType=INTEGER},
+      foreignlanguages = #{foreignlanguages,jdbcType=VARCHAR},
+      forlangproficiency = #{forlangproficiency,jdbcType=VARCHAR},
+      computerlevel = #{computerlevel,jdbcType=VARCHAR},
+      mandarinlevel = #{mandarinlevel,jdbcType=VARCHAR},
+      expectjoblocation = #{expectjoblocation,jdbcType=VARCHAR},
+      expectjobpost = #{expectjobpost,jdbcType=VARCHAR},
+      expectsalary = #{expectsalary,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      picturepath = #{picturepath,jdbcType=VARCHAR},
+      specialty = #{specialty,jdbcType=LONGVARCHAR},
+      intershipexperience = #{intershipexperience,jdbcType=LONGVARCHAR},
+      getwinning = #{getwinning,jdbcType=LONGVARCHAR},
+      evaluation = #{evaluation,jdbcType=LONGVARCHAR}
+    where stuextendid = #{stuextendid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.first.bean.Studentextend">
+    update studentextend
+    set stuid = #{stuid,jdbcType=INTEGER},
+      foreignlanguages = #{foreignlanguages,jdbcType=VARCHAR},
+      forlangproficiency = #{forlangproficiency,jdbcType=VARCHAR},
+      computerlevel = #{computerlevel,jdbcType=VARCHAR},
+      mandarinlevel = #{mandarinlevel,jdbcType=VARCHAR},
+      expectjoblocation = #{expectjoblocation,jdbcType=VARCHAR},
+      expectjobpost = #{expectjobpost,jdbcType=VARCHAR},
+      expectsalary = #{expectsalary,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      picturepath = #{picturepath,jdbcType=VARCHAR}
+    where stuextendid = #{stuextendid,jdbcType=INTEGER}
+  </update>
+</mapper>
