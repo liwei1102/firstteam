@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>用户注册</title>
+		<link rel="stylesheet" href="css/bootstrap.css" />
+		<link rel="stylesheet" href="css/register.css" />
+		<script type="text/javascript" src="js/bootstrap.js"></script>
+		<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+		<script type="text/javascript" src="js/register.js" ></script>
+	</head>
+
+	<body class="container" style="background:url(img/grass.jpg) no-repeat;background-size: 100%;">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3"></div>
+				<div class="col-lg-6">
+					<div id="registerbox" style="width:450px ;margin-top: 10px;border-radius: 8px;padding-left: 50px;margin-top: 150px;background-color:rgba(0,0,0,0.5);">
+						<div class="input-group" style="padding-top: 20px;">
+							<span class="input-group-addon " id="basic-addon1">用户名</span>
+							<input type="text" id="Username" class="form-control" placeholder="Username" oninput="checkUsername()" onblur="checkUsername()" aria-describedby="basic-addon1" style="width: 250px;">
+						</div>
+						<label id="Username-error" class="error" for="Username"></label>
+
+						<div class="input-group" style="margin-top: 10px;">
+							<span class="input-group-addon" id="basic-addon2">邮箱</span>
+							<input type="text" id="Mail" class="form-control" placeholder="Mail" onblur="" aria-describedby="basic-addon1" style="width: 250px;">
+						</div>
+						<label id="myPassword-error" class="error" for="myPassword"></label>
+						
+						<div class="input-group" style="margin-top: 10px;">
+							<span class="input-group-addon" id="basic-addon2">密码</span>
+							<input type="password" id="myPassword" class="form-control" placeholder="Password" onblur="" aria-describedby="basic-addon1" style="width: 250px;">
+						</div>
+						<label id="myPassword-error" class="error" for="myPassword"></label>
+						
+						<div class="input-group" style="margin-top: 10px;">
+							<span class="input-group-addon" id="basic-addon2">重复密码</span>
+							<input type="password" id="myPassword" class="form-control" placeholder="Password" onblur="" aria-describedby="basic-addon1" style="width: 250px;">
+						</div>
+						<label id="myPassword-error" class="error" for="myPassword"></label>
+						
+						<div class="input-group" style="margin-top: 10px;">
+							<span class="input-group-addon" id="basic-addon2">密保问题</span>
+							<input type="password" id="myPassword" class="form-control" placeholder="密保问题" onblur="" aria-describedby="basic-addon1" style="width: 250px;">
+						</div>
+						<label id="myPassword-error" class="error" for="myPassword"></label>
+						
+						<div class="input-group" style="margin-top: 10px;">
+							<span class="input-group-addon" id="basic-addon2">密保答案</span>
+							<input type="password" id="myPassword" class="form-control" placeholder="密保答案" onblur="" aria-describedby="basic-addon1" style="width: 250px;">
+						</div>
+						<label id="myPassword-error" class="error" for="myPassword"></label>
+						<br />
+								<button class="btn btn-default" style="margin-left: 50px;width: 80px;" onclick="returnToIndex()">取消</button>
+								<button class="btn btn-default" id="lord" disabled="disabled" style="margin-left: 80px;width: 80px;" onclick="submitInfo1()">登陆</button>
+								<br /><br />
+					</div>
+				</div>
+				<div class="col-lg-3"></div>
+			</div>
+
+		</div>
+	</body>
+
+</html>

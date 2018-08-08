@@ -1,0 +1,13 @@
+.login{
+	width: 500px;
+}
+input{
+	width: 300px;
+}
+.error{
+	color: red;
+	font-size: 14px;
+}
+.bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+	width: 150px;
+}
