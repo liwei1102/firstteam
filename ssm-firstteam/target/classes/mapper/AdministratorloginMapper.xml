@@ -119,7 +119,12 @@
   	from administratorlogin 
   	where email = #{email}
   </select>
-  
+  <!-- 通过id重设密码  参数：id   密码  update -->
+  <update id="resetPassbyId">
+  	update administratorlogin 
+  	set password = #{password} 
+  	where adminloginid = #{id}
+  </update>
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from administratorlogin

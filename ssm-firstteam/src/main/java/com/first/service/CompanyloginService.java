@@ -37,5 +37,8 @@ public class CompanyloginService {
 	public Companylogin getCompanybyemail(String email) {
 		return companyloginMapper.selectbyemail(email);
 	}
-	
+	//根据id，重设密码
+	public void resetPassword(Integer comloginid,String password) {
+			companyloginMapper.resetPassbyId(comloginid, password);
+	}
 }

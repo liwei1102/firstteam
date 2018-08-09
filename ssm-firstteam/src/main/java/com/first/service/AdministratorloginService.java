@@ -39,5 +39,8 @@ public class AdministratorloginService {
 	public Administratorlogin getAdministratorbyemail(String email) {
 		return administratorloginMapper.selectbyemail(email);
 	}
-	
+	//根据id，重设密码
+		public void resetPassword(Integer adminloginid,String password) {
+			administratorloginMapper.resetPassbyId(adminloginid, password);
+		}
 }

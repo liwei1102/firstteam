@@ -84,4 +84,11 @@ public class Companylogin {
     public void setAnswer(String answer) {
         this.answer = answer == null ? null : answer.trim();
     }
+
+	@Override
+	public String toString() {
+		return "Companylogin [comploginid=" + comploginid + ", username=" + username + ", password=" + password
+				+ ", email=" + email + ", question=" + question + ", answer=" + answer + "]";
+	}
+    
 }

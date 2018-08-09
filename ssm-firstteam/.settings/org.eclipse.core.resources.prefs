@@ -1,7 +1,15 @@
 eclipse.preferences.version=1
 encoding//src/main/java/com/first/controller/LoginController.java=UTF-8
 encoding//src/main/java/com/first/controller/RegisterController.java=UTF-8
+encoding//src/main/java/com/first/dao/AdministratorloginMapper.java=UTF-8
+encoding//src/main/java/com/first/dao/CompanyloginMapper.java=UTF-8
+encoding//src/main/java/com/first/dao/StudentloginMapper.java=UTF-8
+encoding//src/main/java/com/first/service/AdministratorloginService.java=UTF-8
+encoding//src/main/java/com/first/service/CompanyloginService.java=UTF-8
+encoding//src/main/java/com/first/service/StudentloginService.java=UTF-8
 encoding//src/main/webapp/WEB-INF/views/studentloginsuccess.jsp=UTF-8
+encoding//src/main/webapp/getbackpsw01.jsp=UTF-8
+encoding//src/main/webapp/getbackpsw02.jsp=UTF-8
 encoding//src/main/webapp/login.jsp=UTF-8
 encoding//src/main/webapp/success.jsp=UTF-8
 encoding/<project>=UTF-8

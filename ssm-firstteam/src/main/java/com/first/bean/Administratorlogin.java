@@ -86,4 +86,11 @@ public class Administratorlogin {
     public void setAnswer(String answer) {
         this.answer = answer == null ? null : answer.trim();
     }
+
+	@Override
+	public String toString() {
+		return "Administratorlogin [adminloginid=" + adminloginid + ", username=" + username + ", password=" + password
+				+ ", email=" + email + ", question=" + question + ", answer=" + answer + "]";
+	}
+    
 }

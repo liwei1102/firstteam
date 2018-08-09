@@ -19,6 +19,9 @@ public interface StudentloginMapper {
 
 	//通过email,查找一条信息
 	Studentlogin selectbyemail(@Param("email")String email);
+	
+	//通过id重设密码  参数：id   密码  update
+	void resetPassbyId(@Param("id") Integer id, @Param("password") String password);
 		
     long countByExample(StudentloginExample example);
 

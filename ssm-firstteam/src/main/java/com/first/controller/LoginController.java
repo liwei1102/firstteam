@@ -1,5 +1,7 @@
 package com.first.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,7 +29,7 @@ public class LoginController {
 	
 	@ResponseBody
 	@RequestMapping(value="/userlogin", method = RequestMethod.POST)
-	public String studentuserlogin(String identity, String account, String password) {
+	public String userLogin(String identity, String account, String password,HttpSession session) {
 		System.out.println(identity);
 		System.out.println(account);
 		System.out.println(password);
@@ -41,6 +43,9 @@ public class LoginController {
 				}else {
 					System.out.println("登录成功！");
 					//return "{\"success\":true} ";
+					//write
+					session.setAttribute("user",student );
+					//System.out.println(student);
 					return "studentsuccess";
 				}
 			} catch (Exception e) {
@@ -60,6 +65,8 @@ public class LoginController {
 				}else {
 					System.out.println("登录成功！");
 					//return "{\"success\":true} ";
+					//write
+					session.setAttribute("user",company);
 					return "companysuccess";
 				}
 			} catch (Exception e) {
@@ -79,6 +86,8 @@ public class LoginController {
 				}else {
 					System.out.println("登录成功！");
 					//return "{\"success\":true} ";
+					//write
+					session.setAttribute("user",adminstrator);
 					return "administratorsuccess";
 				}
 			} catch (Exception e) {
@@ -93,7 +102,7 @@ public class LoginController {
 	
 	@ResponseBody
 	@RequestMapping(value="/emaillogin", method = RequestMethod.POST)
-	public String studentemaillogin(String identity, String email, String password) {
+	public String emailLogin(String identity, String email, String password,HttpSession session) {
 		System.out.println(identity);
 		System.out.println(email);
 		System.out.println(password);
@@ -107,6 +116,8 @@ public class LoginController {
 				}else {
 					System.out.println("登录成功！");
 					//return "{\"success\":true} ";
+					//write
+					session.setAttribute("user",student );
 					return "studentsuccess";
 				}
 			} catch (Exception e) {
@@ -126,6 +137,8 @@ public class LoginController {
 				}else {
 					System.out.println("登录成功！");
 					//return "{\"success\":true} ";
+					//write
+					session.setAttribute("user",company );
 					return "companysuccess";
 				}
 			} catch (Exception e) {
@@ -145,6 +158,8 @@ public class LoginController {
 				}else {
 					System.out.println("登录成功！");
 					//return "{\"success\":true} ";
+					//write
+					session.setAttribute("user",adminstrator );
 					return "administratorsuccess";
 				}
 			} catch (Exception e) {

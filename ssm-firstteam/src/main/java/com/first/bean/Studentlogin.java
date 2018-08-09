@@ -85,4 +85,11 @@ public class Studentlogin {
     public void setAnswer(String answer) {
         this.answer = answer == null ? null : answer.trim();
     }
+
+	@Override
+	public String toString() {
+		return "Studentlogin [stuloginid=" + stuloginid + ", username=" + username + ", password=" + password
+				+ ", email=" + email + ", question=" + question + ", answer=" + answer + "]";
+	}
+    
 }

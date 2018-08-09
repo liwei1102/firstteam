@@ -120,6 +120,13 @@
   	where email = #{email}
   </select>
   
+  <!-- 通过id重设密码  参数：id   密码  update -->
+  <update id="resetPassbyId">
+  	update companylogin  
+  	set password = #{password} 
+  	where comploginid = #{id}
+  </update>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from companylogin
     where comploginid = #{comploginid,jdbcType=INTEGER}

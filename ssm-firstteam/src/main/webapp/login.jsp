@@ -61,7 +61,7 @@ pageEncoding="UTF-8"%>
 
 								<br />
 								<a style="margin-left: 50px; color: white;" href="register.jsp">新用户注册</a>
-								<a style="margin-left: 100px;color: white;">忘记密码</a>
+								<a style="margin-left: 100px;color: white;" href="getbackpsw01.jsp">忘记密码</a>
 								<br /><br />
 								<button class="btn btn-default" style="margin-left: 50px;width: 80px;" onclick="returnToIndex()">取消</button>
 								<button class="btn btn-default" id="lord" disabled="disabled" style="margin-left: 80px;width: 80px;" onclick="submitInfo1()">登陆</button>

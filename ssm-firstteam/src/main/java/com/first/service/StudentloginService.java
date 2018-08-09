@@ -39,6 +39,9 @@ public class StudentloginService {
 	public Studentlogin getStudentbyemail(String email) {
 		return studentloginmapper.selectbyemail(email);
 	}
-	
+	//根据id，重设密码
+	public void resetPassword(Integer stuloginid,String password) {
+		studentloginmapper.resetPassbyId(stuloginid, password);
+	}
 	
 }
