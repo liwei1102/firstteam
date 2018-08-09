@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.first.dao.EmployeementpolicyMapper">
+<!-- 开启二级缓存并设置参数 -->
+	<cache eviction="FIFO" flushInterval="60000" readOnly="false" size="1024"></cache>
+  
   <resultMap id="BaseResultMap" type="com.first.bean.Employeementpolicy">
     <id column="policyid" jdbcType="INTEGER" property="policyid" />
     <result column="adminid" jdbcType="INTEGER" property="adminid" />

@@ -1,6 +1,8 @@
 package com.first.bean;
 
-public class Administrator {
+import java.io.Serializable;
+
+public class Administrator implements Serializable {
     private Integer adminid;
 
     private Integer adminloginid;

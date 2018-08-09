@@ -1,8 +1,9 @@
 package com.first.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Announcement {
+public class Announcement implements Serializable{
     private Integer annoid;
 
     private Integer adminid;

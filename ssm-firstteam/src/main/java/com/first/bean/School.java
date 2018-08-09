@@ -1,6 +1,8 @@
 package com.first.bean;
 
-public class School {
+import java.io.Serializable;
+
+public class School implements Serializable{
     private Integer schoolid;
 
     private String schoolname;

@@ -1,8 +1,9 @@
 package com.first.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Household {
+public class Household implements Serializable{
     private Integer householdid;
 
     private Integer stuid;

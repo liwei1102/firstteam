@@ -4,7 +4,6 @@
   <resultMap id="BaseResultMap" type="com.first.bean.Studentbase">
     <id column="stuid" jdbcType="INTEGER" property="stuid" />
     <result column="stuloginid" jdbcType="INTEGER" property="stuloginid" />
-    <result column="adminid" jdbcType="INTEGER" property="adminid" />
     <result column="studentid" jdbcType="INTEGER" property="studentid" />
     <result column="stuname" jdbcType="VARCHAR" property="stuname" />
     <result column="gender" jdbcType="VARCHAR" property="gender" />
@@ -79,9 +78,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    stuid, stuloginid, adminid, studentid, stuname, gender, identifynumber, registerdate, 
-    birthdate, originplace, nation, lengths, politticalstatus, college, major, station, 
-    click
+    stuid, stuloginid, studentid, stuname, gender, identifynumber, registerdate, birthdate, 
+    originplace, nation, lengths, politticalstatus, college, major, station, click
   </sql>
   <select id="selectByExample" parameterType="com.first.bean.StudentbaseExample" resultMap="BaseResultMap">
     select
@@ -114,18 +112,18 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.first.bean.Studentbase">
-    insert into studentbase (stuid, stuloginid, adminid, 
-      studentid, stuname, gender, 
-      identifynumber, registerdate, birthdate, 
-      originplace, nation, lengths, 
-      politticalstatus, college, major, 
-      station, click)
-    values (#{stuid,jdbcType=INTEGER}, #{stuloginid,jdbcType=INTEGER}, #{adminid,jdbcType=INTEGER}, 
-      #{studentid,jdbcType=INTEGER}, #{stuname,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, 
-      #{identifynumber,jdbcType=VARCHAR}, #{registerdate,jdbcType=DATE}, #{birthdate,jdbcType=DATE}, 
-      #{originplace,jdbcType=VARCHAR}, #{nation,jdbcType=VARCHAR}, #{lengths,jdbcType=VARCHAR}, 
-      #{politticalstatus,jdbcType=VARCHAR}, #{college,jdbcType=VARCHAR}, #{major,jdbcType=VARCHAR}, 
-      #{station,jdbcType=BIT}, #{click,jdbcType=INTEGER})
+    insert into studentbase (stuid, stuloginid, studentid, 
+      stuname, gender, identifynumber, 
+      registerdate, birthdate, originplace, 
+      nation, lengths, politticalstatus, 
+      college, major, station, 
+      click)
+    values (#{stuid,jdbcType=INTEGER}, #{stuloginid,jdbcType=INTEGER}, #{studentid,jdbcType=INTEGER}, 
+      #{stuname,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, #{identifynumber,jdbcType=VARCHAR}, 
+      #{registerdate,jdbcType=DATE}, #{birthdate,jdbcType=DATE}, #{originplace,jdbcType=VARCHAR}, 
+      #{nation,jdbcType=VARCHAR}, #{lengths,jdbcType=VARCHAR}, #{politticalstatus,jdbcType=VARCHAR}, 
+      #{college,jdbcType=VARCHAR}, #{major,jdbcType=VARCHAR}, #{station,jdbcType=BIT}, 
+      #{click,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.first.bean.Studentbase">
     insert into studentbase
@@ -135,9 +133,6 @@
       </if>
       <if test="stuloginid != null">
         stuloginid,
-      </if>
-      <if test="adminid != null">
-        adminid,
       </if>
       <if test="studentid != null">
         studentid,
@@ -188,9 +183,6 @@
       </if>
       <if test="stuloginid != null">
         #{stuloginid,jdbcType=INTEGER},
-      </if>
-      <if test="adminid != null">
-        #{adminid,jdbcType=INTEGER},
       </if>
       <if test="studentid != null">
         #{studentid,jdbcType=INTEGER},
@@ -251,9 +243,6 @@
       <if test="record.stuloginid != null">
         stuloginid = #{record.stuloginid,jdbcType=INTEGER},
       </if>
-      <if test="record.adminid != null">
-        adminid = #{record.adminid,jdbcType=INTEGER},
-      </if>
       <if test="record.studentid != null">
         studentid = #{record.studentid,jdbcType=INTEGER},
       </if>
@@ -305,7 +294,6 @@
     update studentbase
     set stuid = #{record.stuid,jdbcType=INTEGER},
       stuloginid = #{record.stuloginid,jdbcType=INTEGER},
-      adminid = #{record.adminid,jdbcType=INTEGER},
       studentid = #{record.studentid,jdbcType=INTEGER},
       stuname = #{record.stuname,jdbcType=VARCHAR},
       gender = #{record.gender,jdbcType=VARCHAR},
@@ -329,9 +317,6 @@
     <set>
       <if test="stuloginid != null">
         stuloginid = #{stuloginid,jdbcType=INTEGER},
-      </if>
-      <if test="adminid != null">
-        adminid = #{adminid,jdbcType=INTEGER},
       </if>
       <if test="studentid != null">
         studentid = #{studentid,jdbcType=INTEGER},
@@ -381,7 +366,6 @@
   <update id="updateByPrimaryKey" parameterType="com.first.bean.Studentbase">
     update studentbase
     set stuloginid = #{stuloginid,jdbcType=INTEGER},
-      adminid = #{adminid,jdbcType=INTEGER},
       studentid = #{studentid,jdbcType=INTEGER},
       stuname = #{stuname,jdbcType=VARCHAR},
       gender = #{gender,jdbcType=VARCHAR},

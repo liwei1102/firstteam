@@ -1,6 +1,8 @@
 package com.first.bean;
 
-public class Comp_stuKey {
+import java.io.Serializable;
+
+public class Comp_stuKey implements Serializable{
     private Integer stuid;
 
     private Integer companyid;

@@ -1,6 +1,8 @@
 package com.first.bean;
 
-public class Studentextend {
+import java.io.Serializable;
+
+public class Studentextend implements Serializable{
     private Integer stuextendid;
 
     private Integer stuid;

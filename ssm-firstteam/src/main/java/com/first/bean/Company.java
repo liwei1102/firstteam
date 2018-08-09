@@ -1,13 +1,12 @@
 package com.first.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Company {
+public class Company implements Serializable{
     private Integer companyid;
 
     private Integer comploginid;
-
-    private Integer adminid;
 
     private String tel;
 
@@ -41,14 +40,6 @@ public class Company {
 
     public void setComploginid(Integer comploginid) {
         this.comploginid = comploginid;
-    }
-
-    public Integer getAdminid() {
-        return adminid;
-    }
-
-    public void setAdminid(Integer adminid) {
-        this.adminid = adminid;
     }
 
     public String getTel() {

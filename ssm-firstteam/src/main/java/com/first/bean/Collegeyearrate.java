@@ -1,6 +1,8 @@
 package com.first.bean;
 
-public class Collegeyearrate {
+import java.io.Serializable;
+
+public class Collegeyearrate implements Serializable{
     private Integer collegeyearrateid;
 
     private Integer collegeid;

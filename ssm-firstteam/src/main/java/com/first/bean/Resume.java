@@ -1,6 +1,8 @@
 package com.first.bean;
 
-public class Resume {
+import java.io.Serializable;
+
+public class Resume implements Serializable{
     private Integer resumeid;
 
     private Integer stuextendid;

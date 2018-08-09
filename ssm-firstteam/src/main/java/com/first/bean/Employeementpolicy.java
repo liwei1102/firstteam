@@ -1,8 +1,9 @@
 package com.first.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Employeementpolicy {
+public class Employeementpolicy implements Serializable{
     private Integer policyid;
 
     private Integer adminid;

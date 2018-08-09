@@ -252,66 +252,6 @@ public class CompanyExample {
             return (Criteria) this;
         }
 
-        public Criteria andAdminidIsNull() {
-            addCriterion("adminid is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andAdminidIsNotNull() {
-            addCriterion("adminid is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andAdminidEqualTo(Integer value) {
-            addCriterion("adminid =", value, "adminid");
-            return (Criteria) this;
-        }
-
-        public Criteria andAdminidNotEqualTo(Integer value) {
-            addCriterion("adminid <>", value, "adminid");
-            return (Criteria) this;
-        }
-
-        public Criteria andAdminidGreaterThan(Integer value) {
-            addCriterion("adminid >", value, "adminid");
-            return (Criteria) this;
-        }
-
-        public Criteria andAdminidGreaterThanOrEqualTo(Integer value) {
-            addCriterion("adminid >=", value, "adminid");
-            return (Criteria) this;
-        }
-
-        public Criteria andAdminidLessThan(Integer value) {
-            addCriterion("adminid <", value, "adminid");
-            return (Criteria) this;
-        }
-
-        public Criteria andAdminidLessThanOrEqualTo(Integer value) {
-            addCriterion("adminid <=", value, "adminid");
-            return (Criteria) this;
-        }
-
-        public Criteria andAdminidIn(List<Integer> values) {
-            addCriterion("adminid in", values, "adminid");
-            return (Criteria) this;
-        }
-
-        public Criteria andAdminidNotIn(List<Integer> values) {
-            addCriterion("adminid not in", values, "adminid");
-            return (Criteria) this;
-        }
-
-        public Criteria andAdminidBetween(Integer value1, Integer value2) {
-            addCriterion("adminid between", value1, value2, "adminid");
-            return (Criteria) this;
-        }
-
-        public Criteria andAdminidNotBetween(Integer value1, Integer value2) {
-            addCriterion("adminid not between", value1, value2, "adminid");
-            return (Criteria) this;
-        }
-
         public Criteria andTelIsNull() {
             addCriterion("tel is null");
             return (Criteria) this;

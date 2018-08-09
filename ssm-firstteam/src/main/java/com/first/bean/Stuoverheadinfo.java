@@ -1,6 +1,8 @@
 package com.first.bean;
 
-public class Stuoverheadinfo {
+import java.io.Serializable;
+
+public class Stuoverheadinfo implements Serializable{
     private Integer stuid;
 
     private Integer score;

@@ -1,6 +1,8 @@
 package com.first.bean;
 
-public class RecruitmentinfoWithBLOBs extends Recruitmentinfo {
+import java.io.Serializable;
+
+public class RecruitmentinfoWithBLOBs extends Recruitmentinfo implements Serializable{
     private String recruitrequest;
 
     private String other;

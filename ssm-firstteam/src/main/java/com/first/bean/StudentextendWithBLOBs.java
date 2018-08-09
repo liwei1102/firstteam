@@ -1,6 +1,8 @@
 package com.first.bean;
 
-public class StudentextendWithBLOBs extends Studentextend {
+import java.io.Serializable;
+
+public class StudentextendWithBLOBs extends Studentextend implements Serializable{
     private String specialty;
 
     private String intershipexperience;

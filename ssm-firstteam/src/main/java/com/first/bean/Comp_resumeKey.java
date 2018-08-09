@@ -1,6 +1,8 @@
 package com.first.bean;
 
-public class Comp_resumeKey {
+import java.io.Serializable;
+
+public class Comp_resumeKey implements Serializable{
     private Integer resumeid;
 
     private Integer companyid;

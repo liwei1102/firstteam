@@ -1,8 +1,9 @@
 package com.first.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Recruitmentinfo {
+public class Recruitmentinfo implements Serializable{
     private Integer infoid;
 
     private Integer companyid;

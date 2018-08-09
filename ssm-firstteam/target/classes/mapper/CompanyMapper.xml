@@ -4,7 +4,6 @@
   <resultMap id="BaseResultMap" type="com.first.bean.Company">
     <id column="companyid" jdbcType="INTEGER" property="companyid" />
     <result column="comploginid" jdbcType="INTEGER" property="comploginid" />
-    <result column="adminid" jdbcType="INTEGER" property="adminid" />
     <result column="tel" jdbcType="VARCHAR" property="tel" />
     <result column="registerdate" jdbcType="DATE" property="registerdate" />
     <result column="compname" jdbcType="VARCHAR" property="compname" />
@@ -74,8 +73,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    companyid, comploginid, adminid, tel, registerdate, compname, founddate, compproperty, 
-    mainpost, mainwork, clicknum, station
+    companyid, comploginid, tel, registerdate, compname, founddate, compproperty, mainpost, 
+    mainwork, clicknum, station
   </sql>
   <select id="selectByExample" parameterType="com.first.bean.CompanyExample" resultMap="BaseResultMap">
     select
@@ -108,16 +107,14 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.first.bean.Company">
-    insert into company (companyid, comploginid, adminid, 
-      tel, registerdate, compname, 
-      founddate, compproperty, mainpost, 
-      mainwork, clicknum, station
-      )
-    values (#{companyid,jdbcType=INTEGER}, #{comploginid,jdbcType=INTEGER}, #{adminid,jdbcType=INTEGER}, 
-      #{tel,jdbcType=VARCHAR}, #{registerdate,jdbcType=DATE}, #{compname,jdbcType=VARCHAR}, 
-      #{founddate,jdbcType=DATE}, #{compproperty,jdbcType=VARCHAR}, #{mainpost,jdbcType=VARCHAR}, 
-      #{mainwork,jdbcType=VARCHAR}, #{clicknum,jdbcType=INTEGER}, #{station,jdbcType=BIT}
-      )
+    insert into company (companyid, comploginid, tel, 
+      registerdate, compname, founddate, 
+      compproperty, mainpost, mainwork, 
+      clicknum, station)
+    values (#{companyid,jdbcType=INTEGER}, #{comploginid,jdbcType=INTEGER}, #{tel,jdbcType=VARCHAR}, 
+      #{registerdate,jdbcType=DATE}, #{compname,jdbcType=VARCHAR}, #{founddate,jdbcType=DATE}, 
+      #{compproperty,jdbcType=VARCHAR}, #{mainpost,jdbcType=VARCHAR}, #{mainwork,jdbcType=VARCHAR}, 
+      #{clicknum,jdbcType=INTEGER}, #{station,jdbcType=BIT})
   </insert>
   <insert id="insertSelective" parameterType="com.first.bean.Company">
     insert into company
@@ -127,9 +124,6 @@
       </if>
       <if test="comploginid != null">
         comploginid,
-      </if>
-      <if test="adminid != null">
-        adminid,
       </if>
       <if test="tel != null">
         tel,
@@ -165,9 +159,6 @@
       </if>
       <if test="comploginid != null">
         #{comploginid,jdbcType=INTEGER},
-      </if>
-      <if test="adminid != null">
-        #{adminid,jdbcType=INTEGER},
       </if>
       <if test="tel != null">
         #{tel,jdbcType=VARCHAR},
@@ -213,9 +204,6 @@
       <if test="record.comploginid != null">
         comploginid = #{record.comploginid,jdbcType=INTEGER},
       </if>
-      <if test="record.adminid != null">
-        adminid = #{record.adminid,jdbcType=INTEGER},
-      </if>
       <if test="record.tel != null">
         tel = #{record.tel,jdbcType=VARCHAR},
       </if>
@@ -252,7 +240,6 @@
     update company
     set companyid = #{record.companyid,jdbcType=INTEGER},
       comploginid = #{record.comploginid,jdbcType=INTEGER},
-      adminid = #{record.adminid,jdbcType=INTEGER},
       tel = #{record.tel,jdbcType=VARCHAR},
       registerdate = #{record.registerdate,jdbcType=DATE},
       compname = #{record.compname,jdbcType=VARCHAR},
@@ -271,9 +258,6 @@
     <set>
       <if test="comploginid != null">
         comploginid = #{comploginid,jdbcType=INTEGER},
-      </if>
-      <if test="adminid != null">
-        adminid = #{adminid,jdbcType=INTEGER},
       </if>
       <if test="tel != null">
         tel = #{tel,jdbcType=VARCHAR},
@@ -308,7 +292,6 @@
   <update id="updateByPrimaryKey" parameterType="com.first.bean.Company">
     update company
     set comploginid = #{comploginid,jdbcType=INTEGER},
-      adminid = #{adminid,jdbcType=INTEGER},
       tel = #{tel,jdbcType=VARCHAR},
       registerdate = #{registerdate,jdbcType=DATE},
       compname = #{compname,jdbcType=VARCHAR},

@@ -1,13 +1,12 @@
 package com.first.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Studentbase {
+public class Studentbase implements Serializable{
     private Integer stuid;
 
     private Integer stuloginid;
-
-    private Integer adminid;
 
     private Integer studentid;
 
@@ -51,14 +50,6 @@ public class Studentbase {
 
     public void setStuloginid(Integer stuloginid) {
         this.stuloginid = stuloginid;
-    }
-
-    public Integer getAdminid() {
-        return adminid;
-    }
-
-    public void setAdminid(Integer adminid) {
-        this.adminid = adminid;
     }
 
     public Integer getStudentid() {
